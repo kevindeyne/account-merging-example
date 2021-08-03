@@ -30,6 +30,10 @@ public class Calculation {
                 if(!accountBalancesAlreadyUsed.contains(accountToMerge.getAccountBalance())) {
                     //not yet used, so we remember we use it + merge the value
                     existingAccount.setAccountBalance(existingAccount.getAccountBalance().add(accountToMerge.getAccountBalance()));
+                    
+                    //remember it (forgot this initially - needed when multiple balances that are similar can show up)
+                    accountBalancesAlreadyUsed.add(accountToMerge.getAccountBalance());
+                    accountBalancesUsedPerAccount.put(id, accountBalancesAlreadyUsed);
                 } else {
                     //no work here, we already used it - so we'll ignore merging it!
                 }
